@@ -1,5 +1,5 @@
 
-# ML Project 2 – MLOps with FastAPI, MLflow, and Docker
+# ML Project – MLOps with FastAPI, MLflow, and Docker
 
 ## 📌 Overview
 This project demonstrates the end-to-end lifecycle of a Machine Learning model using **MLOps practices**.
