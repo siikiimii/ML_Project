@@ -1,7 +1,17 @@
-venv/
+# Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.joblib
+
+# Virtual environment
+venv/
+
+# MLflow artifacts
 mlruns/
 mlflow.db
-*.joblib
-*.pyc
+
+# OS files
 .DS_Store
+
