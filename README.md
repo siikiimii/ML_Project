@@ -1,6 +1,3 @@
-# ML_Project
-MLOps project with FastAPI, MLflow, and Docker
-=======
 
 # ML Project 2 – MLOps with FastAPI, MLflow, and Docker
 
