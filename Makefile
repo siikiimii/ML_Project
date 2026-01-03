@@ -35,6 +35,8 @@ api: ## Run FastAPI server
 mlflow_ui: ## Start MLflow tracking server
 	. venv/bin/activate && mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port 5000
 
+all: install prepare_data train test mlflow_ui api
+
 # 5. Docker targets
 docker-build: ## Build Docker image with FastAPI + MLflow
 	docker build -t siikiimii/churn-api-mlflow:latest .

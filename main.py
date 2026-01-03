@@ -7,7 +7,7 @@ This script provides CLI commands to:
 - train: train a new model and log to MLflow
 - evaluate: evaluate a saved model and log to MLflow
 
-It integrates MLflow for experiment tracking.
+It integrates MLflow for experiment tracking and version tagging.
 """
 
 import argparse
@@ -21,12 +21,15 @@ from model_pipeline import (
     load_model,
 )
 
-# Configure MLflow tracking
+# Configure MLflow tracking (local SQLite + mlruns folder)
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
 mlflow.set_experiment("ChurnPrediction")
 
+# Define model version tag
+MODEL_VERSION = "v1.0"
 
-def main(action):
+
+def main(action: str):
     """
     Execute the pipeline based on the specified action.
 
@@ -57,7 +60,8 @@ def main(action):
             # Log metrics
             mlflow.log_metric("accuracy", accuracy)
 
-            # Log model
+            # Log model with version tag
+            mlflow.set_tag("model_version", MODEL_VERSION)
             mlflow.sklearn.log_model(model, "model")
 
             # Save locally
@@ -71,6 +75,7 @@ def main(action):
 
         with mlflow.start_run(run_name="ChurnModelEvaluation", tags={"stage": "evaluation"}):
             mlflow.log_metric("accuracy", accuracy)
+            mlflow.set_tag("model_version", MODEL_VERSION)
             mlflow.sklearn.log_model(model, "model")
 
     else:
